@@ -1,0 +1,450 @@
+[
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Amazon",
+   "Year": 2021,
+   "TotalOperatingProfit": 3331443.8,
+   "TotalUnitsSold": 24062
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Foot Locker",
+   "Year": 2020,
+   "TotalOperatingProfit": 2173670.88,
+   "TotalUnitsSold": 16487
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Foot Locker",
+   "Year": 2021,
+   "TotalOperatingProfit": 7768733.73,
+   "TotalUnitsSold": 55056
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Kohl's",
+   "Year": 2021,
+   "TotalOperatingProfit": 5945043.2,
+   "TotalUnitsSold": 36080
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Sports Direct",
+   "Year": 2020,
+   "TotalOperatingProfit": 678905.66,
+   "TotalUnitsSold": 5214
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Sports Direct",
+   "Year": 2021,
+   "TotalOperatingProfit": 8045009.05,
+   "TotalUnitsSold": 61946
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Walmart",
+   "Year": 2020,
+   "TotalOperatingProfit": 1704014.1,
+   "TotalUnitsSold": 16146
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "Walmart",
+   "Year": 2021,
+   "TotalOperatingProfit": 1462577.12,
+   "TotalUnitsSold": 14360
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "West Gear",
+   "Year": 2020,
+   "TotalOperatingProfit": 5103479.73,
+   "TotalUnitsSold": 23380
+ },
+ {
+   "Product": "Men's Apparel",
+   "Retailer": "West Gear",
+   "Year": 2021,
+   "TotalOperatingProfit": 8550153.06,
+   "TotalUnitsSold": 53952
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Amazon",
+   "Year": 2021,
+   "TotalOperatingProfit": 4518030.11,
+   "TotalUnitsSold": 31987
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2020,
+   "TotalOperatingProfit": 2262636.84,
+   "TotalUnitsSold": 20583
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2021,
+   "TotalOperatingProfit": 10146584.65,
+   "TotalUnitsSold": 83184
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2020,
+   "TotalOperatingProfit": 66436.68,
+   "TotalUnitsSold": 603
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2021,
+   "TotalOperatingProfit": 5659325.92,
+   "TotalUnitsSold": 50409
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2020,
+   "TotalOperatingProfit": 959220.74,
+   "TotalUnitsSold": 8787
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2021,
+   "TotalOperatingProfit": 10976452.07,
+   "TotalUnitsSold": 91416
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Walmart",
+   "Year": 2020,
+   "TotalOperatingProfit": 1717320.75,
+   "TotalUnitsSold": 16333
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "Walmart",
+   "Year": 2021,
+   "TotalOperatingProfit": 2311936.9,
+   "TotalUnitsSold": 20824
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "West Gear",
+   "Year": 2020,
+   "TotalOperatingProfit": 4353641.9,
+   "TotalUnitsSold": 35454
+ },
+ {
+   "Product": "Men's Athletic Footwear",
+   "Retailer": "West Gear",
+   "Year": 2021,
+   "TotalOperatingProfit": 8875301.63,
+   "TotalUnitsSold": 75946
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Amazon",
+   "Year": 2021,
+   "TotalOperatingProfit": 8707658.12,
+   "TotalUnitsSold": 54883
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2020,
+   "TotalOperatingProfit": 4896041.06,
+   "TotalUnitsSold": 29083
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2021,
+   "TotalOperatingProfit": 18164768.11,
+   "TotalUnitsSold": 129998
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2020,
+   "TotalOperatingProfit": 77021.14,
+   "TotalUnitsSold": 594
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2021,
+   "TotalOperatingProfit": 9142798.75,
+   "TotalUnitsSold": 66250
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2020,
+   "TotalOperatingProfit": 1236387.88,
+   "TotalUnitsSold": 9484
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2021,
+   "TotalOperatingProfit": 14601362.55,
+   "TotalUnitsSold": 115395
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Walmart",
+   "Year": 2020,
+   "TotalOperatingProfit": 2298387.57,
+   "TotalUnitsSold": 17330
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "Walmart",
+   "Year": 2021,
+   "TotalOperatingProfit": 3140278.56,
+   "TotalUnitsSold": 24650
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "West Gear",
+   "Year": 2020,
+   "TotalOperatingProfit": 7050999.79,
+   "TotalUnitsSold": 42695
+ },
+ {
+   "Product": "Men's Street Footwear",
+   "Retailer": "West Gear",
+   "Year": 2021,
+   "TotalOperatingProfit": 13486557.09,
+   "TotalUnitsSold": 102958
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Amazon",
+   "Year": 2021,
+   "TotalOperatingProfit": 6280071.53,
+   "TotalUnitsSold": 35885
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Foot Locker",
+   "Year": 2020,
+   "TotalOperatingProfit": 2977513.94,
+   "TotalUnitsSold": 20941
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Foot Locker",
+   "Year": 2021,
+   "TotalOperatingProfit": 14215387.55,
+   "TotalUnitsSold": 83548
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Kohl's",
+   "Year": 2021,
+   "TotalOperatingProfit": 5596172.5,
+   "TotalUnitsSold": 49012
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Sports Direct",
+   "Year": 2020,
+   "TotalOperatingProfit": 1235697.3,
+   "TotalUnitsSold": 6480
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Sports Direct",
+   "Year": 2021,
+   "TotalOperatingProfit": 16597263.37,
+   "TotalUnitsSold": 92910
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Walmart",
+   "Year": 2020,
+   "TotalOperatingProfit": 3026035.35,
+   "TotalUnitsSold": 20957
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "Walmart",
+   "Year": 2021,
+   "TotalOperatingProfit": 3322415.68,
+   "TotalUnitsSold": 17045
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "West Gear",
+   "Year": 2020,
+   "TotalOperatingProfit": 4063658.63,
+   "TotalUnitsSold": 31830
+ },
+ {
+   "Product": "Women's Apparel",
+   "Retailer": "West Gear",
+   "Year": 2021,
+   "TotalOperatingProfit": 11336754.71,
+   "TotalUnitsSold": 75219
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Amazon",
+   "Year": 2021,
+   "TotalOperatingProfit": 2701607.74,
+   "TotalUnitsSold": 22544
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2020,
+   "TotalOperatingProfit": 1658182.77,
+   "TotalUnitsSold": 15341
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2021,
+   "TotalOperatingProfit": 6819130.96,
+   "TotalUnitsSold": 57763
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2020,
+   "TotalOperatingProfit": 60742.24,
+   "TotalUnitsSold": 423
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2021,
+   "TotalOperatingProfit": 4509950.85,
+   "TotalUnitsSold": 38094
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2020,
+   "TotalOperatingProfit": 918348.18,
+   "TotalUnitsSold": 7855
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2021,
+   "TotalOperatingProfit": 8770398.21,
+   "TotalUnitsSold": 65842
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Walmart",
+   "Year": 2020,
+   "TotalOperatingProfit": 1688948.82,
+   "TotalUnitsSold": 13027
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "Walmart",
+   "Year": 2021,
+   "TotalOperatingProfit": 1550103.67,
+   "TotalUnitsSold": 13808
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "West Gear",
+   "Year": 2020,
+   "TotalOperatingProfit": 3964519.16,
+   "TotalUnitsSold": 27531
+ },
+ {
+   "Product": "Women's Athletic Footwear",
+   "Retailer": "West Gear",
+   "Year": 2021,
+   "TotalOperatingProfit": 6333852.34,
+   "TotalUnitsSold": 55008
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Amazon",
+   "Year": 2021,
+   "TotalOperatingProfit": 3279692.01,
+   "TotalUnitsSold": 28629
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2020,
+   "TotalOperatingProfit": 1700737.63,
+   "TotalUnitsSold": 17869
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Foot Locker",
+   "Year": 2021,
+   "TotalOperatingProfit": 7938736.69,
+   "TotalUnitsSold": 74516
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2020,
+   "TotalOperatingProfit": 99066.11,
+   "TotalUnitsSold": 594
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Kohl's",
+   "Year": 2021,
+   "TotalOperatingProfit": 5654695.19,
+   "TotalUnitsSold": 45316
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2020,
+   "TotalOperatingProfit": 761374.28,
+   "TotalUnitsSold": 8446
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Sports Direct",
+   "Year": 2021,
+   "TotalOperatingProfit": 9552535.67,
+   "TotalUnitsSold": 83865
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Walmart",
+   "Year": 2020,
+   "TotalOperatingProfit": 1721832.93,
+   "TotalUnitsSold": 16005
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "Walmart",
+   "Year": 2021,
+   "TotalOperatingProfit": 1838201.16,
+   "TotalUnitsSold": 15740
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "West Gear",
+   "Year": 2020,
+   "TotalOperatingProfit": 4920840.52,
+   "TotalUnitsSold": 32877
+ },
+ {
+   "Product": "Women's Street Footwear",
+   "Retailer": "West Gear",
+   "Year": 2021,
+   "TotalOperatingProfit": 7628114.62,
+   "TotalUnitsSold": 68412
+ }
+]

@@ -1,0 +1,902 @@
+[
+  {
+    "StateFull": "Alabama",
+    "State": "AL",
+    "Product": "Apparel",
+    "UnitsSold": 19113
+  },
+  {
+    "StateFull": "Alabama",
+    "State": "AL",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 20235
+  },
+  {
+    "StateFull": "Alabama",
+    "State": "AL",
+    "Product": "Street Footwear",
+    "UnitsSold": 23979
+  },
+  {
+    "StateFull": "Alaska",
+    "State": "AK",
+    "Product": "Apparel",
+    "UnitsSold": 8754
+  },
+  {
+    "StateFull": "Alaska",
+    "State": "AK",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 8526
+  },
+  {
+    "StateFull": "Alaska",
+    "State": "AK",
+    "Product": "Street Footwear",
+    "UnitsSold": 13535
+  },
+  {
+    "StateFull": "Arizona",
+    "State": "AZ",
+    "Product": "Apparel",
+    "UnitsSold": 12899
+  },
+  {
+    "StateFull": "Arizona",
+    "State": "AZ",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 15410
+  },
+  {
+    "StateFull": "Arizona",
+    "State": "AZ",
+    "Product": "Street Footwear",
+    "UnitsSold": 18610
+  },
+  {
+    "StateFull": "Arkansas",
+    "State": "AR",
+    "Product": "Apparel",
+    "UnitsSold": 15071
+  },
+  {
+    "StateFull": "Arkansas",
+    "State": "AR",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 13780
+  },
+  {
+    "StateFull": "Arkansas",
+    "State": "AR",
+    "Product": "Street Footwear",
+    "UnitsSold": 19617
+  },
+  {
+    "StateFull": "California",
+    "State": "CA",
+    "Product": "Apparel",
+    "UnitsSold": 49991
+  },
+  {
+    "StateFull": "California",
+    "State": "CA",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 53549
+  },
+  {
+    "StateFull": "California",
+    "State": "CA",
+    "Product": "Street Footwear",
+    "UnitsSold": 59744
+  },
+  {
+    "StateFull": "Colorado",
+    "State": "CO",
+    "Product": "Apparel",
+    "UnitsSold": 11634
+  },
+  {
+    "StateFull": "Colorado",
+    "State": "CO",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 13673
+  },
+  {
+    "StateFull": "Colorado",
+    "State": "CO",
+    "Product": "Street Footwear",
+    "UnitsSold": 16071
+  },
+  {
+    "StateFull": "Connecticut",
+    "State": "CT",
+    "Product": "Apparel",
+    "UnitsSold": 10434
+  },
+  {
+    "StateFull": "Connecticut",
+    "State": "CT",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 9246
+  },
+  {
+    "StateFull": "Connecticut",
+    "State": "CT",
+    "Product": "Street Footwear",
+    "UnitsSold": 15016
+  },
+  {
+    "StateFull": "Delaware",
+    "State": "DE",
+    "Product": "Apparel",
+    "UnitsSold": 9138
+  },
+  {
+    "StateFull": "Delaware",
+    "State": "DE",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 8242
+  },
+  {
+    "StateFull": "Delaware",
+    "State": "DE",
+    "Product": "Street Footwear",
+    "UnitsSold": 12895
+  },
+  {
+    "StateFull": "Florida",
+    "State": "FL",
+    "Product": "Apparel",
+    "UnitsSold": 41335
+  },
+  {
+    "StateFull": "Florida",
+    "State": "FL",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 41758
+  },
+  {
+    "StateFull": "Florida",
+    "State": "FL",
+    "Product": "Street Footwear",
+    "UnitsSold": 50337
+  },
+  {
+    "StateFull": "Georgia",
+    "State": "GA",
+    "Product": "Apparel",
+    "UnitsSold": 15490
+  },
+  {
+    "StateFull": "Georgia",
+    "State": "GA",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 18268
+  },
+  {
+    "StateFull": "Georgia",
+    "State": "GA",
+    "Product": "Street Footwear",
+    "UnitsSold": 22633
+  },
+  {
+    "StateFull": "Hawaii",
+    "State": "HI",
+    "Product": "Apparel",
+    "UnitsSold": 11287
+  },
+  {
+    "StateFull": "Hawaii",
+    "State": "HI",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 13349
+  },
+  {
+    "StateFull": "Hawaii",
+    "State": "HI",
+    "Product": "Street Footwear",
+    "UnitsSold": 15739
+  },
+  {
+    "StateFull": "Idaho",
+    "State": "ID",
+    "Product": "Apparel",
+    "UnitsSold": 19053
+  },
+  {
+    "StateFull": "Idaho",
+    "State": "ID",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 20709
+  },
+  {
+    "StateFull": "Idaho",
+    "State": "ID",
+    "Product": "Street Footwear",
+    "UnitsSold": 24065
+  },
+  {
+    "StateFull": "Illinois",
+    "State": "IL",
+    "Product": "Apparel",
+    "UnitsSold": 6845
+  },
+  {
+    "StateFull": "Illinois",
+    "State": "IL",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 7133
+  },
+  {
+    "StateFull": "Illinois",
+    "State": "IL",
+    "Product": "Street Footwear",
+    "UnitsSold": 11429
+  },
+  {
+    "StateFull": "Indiana",
+    "State": "IN",
+    "Product": "Apparel",
+    "UnitsSold": 7786
+  },
+  {
+    "StateFull": "Indiana",
+    "State": "IN",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 7005
+  },
+  {
+    "StateFull": "Indiana",
+    "State": "IN",
+    "Product": "Street Footwear",
+    "UnitsSold": 11541
+  },
+  {
+    "StateFull": "Iowa",
+    "State": "IA",
+    "Product": "Apparel",
+    "UnitsSold": 6806
+  },
+  {
+    "StateFull": "Iowa",
+    "State": "IA",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 6019
+  },
+  {
+    "StateFull": "Iowa",
+    "State": "IA",
+    "Product": "Street Footwear",
+    "UnitsSold": 10621
+  },
+  {
+    "StateFull": "Kansas",
+    "State": "KS",
+    "Product": "Apparel",
+    "UnitsSold": 8912
+  },
+  {
+    "StateFull": "Kansas",
+    "State": "KS",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 7965
+  },
+  {
+    "StateFull": "Kansas",
+    "State": "KS",
+    "Product": "Street Footwear",
+    "UnitsSold": 12586
+  },
+  {
+    "StateFull": "Kentucky",
+    "State": "KY",
+    "Product": "Apparel",
+    "UnitsSold": 8259
+  },
+  {
+    "StateFull": "Kentucky",
+    "State": "KY",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 7694
+  },
+  {
+    "StateFull": "Kentucky",
+    "State": "KY",
+    "Product": "Street Footwear",
+    "UnitsSold": 12711
+  },
+  {
+    "StateFull": "Louisiana",
+    "State": "LA",
+    "Product": "Apparel",
+    "UnitsSold": 15987
+  },
+  {
+    "StateFull": "Louisiana",
+    "State": "LA",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 19501
+  },
+  {
+    "StateFull": "Louisiana",
+    "State": "LA",
+    "Product": "Street Footwear",
+    "UnitsSold": 22127
+  },
+  {
+    "StateFull": "Maine",
+    "State": "ME",
+    "Product": "Apparel",
+    "UnitsSold": 6298
+  },
+  {
+    "StateFull": "Maine",
+    "State": "ME",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 5810
+  },
+  {
+    "StateFull": "Maine",
+    "State": "ME",
+    "Product": "Street Footwear",
+    "UnitsSold": 10302
+  },
+  {
+    "StateFull": "Maryland",
+    "State": "MD",
+    "Product": "Apparel",
+    "UnitsSold": 5788
+  },
+  {
+    "StateFull": "Maryland",
+    "State": "MD",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 5101
+  },
+  {
+    "StateFull": "Maryland",
+    "State": "MD",
+    "Product": "Street Footwear",
+    "UnitsSold": 9929
+  },
+  {
+    "StateFull": "Massachusetts",
+    "State": "MA",
+    "Product": "Apparel",
+    "UnitsSold": 9469
+  },
+  {
+    "StateFull": "Massachusetts",
+    "State": "MA",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 9114
+  },
+  {
+    "StateFull": "Massachusetts",
+    "State": "MA",
+    "Product": "Street Footwear",
+    "UnitsSold": 14312
+  },
+  {
+    "StateFull": "Michigan",
+    "State": "MI",
+    "Product": "Apparel",
+    "UnitsSold": 15879
+  },
+  {
+    "StateFull": "Michigan",
+    "State": "MI",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 14898
+  },
+  {
+    "StateFull": "Michigan",
+    "State": "MI",
+    "Product": "Street Footwear",
+    "UnitsSold": 19318
+  },
+  {
+    "StateFull": "Minnesota",
+    "State": "MN",
+    "Product": "Apparel",
+    "UnitsSold": 5635
+  },
+  {
+    "StateFull": "Minnesota",
+    "State": "MN",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 5403
+  },
+  {
+    "StateFull": "Minnesota",
+    "State": "MN",
+    "Product": "Street Footwear",
+    "UnitsSold": 9800
+  },
+  {
+    "StateFull": "Mississippi",
+    "State": "MS",
+    "Product": "Apparel",
+    "UnitsSold": 17879
+  },
+  {
+    "StateFull": "Mississippi",
+    "State": "MS",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 16572
+  },
+  {
+    "StateFull": "Mississippi",
+    "State": "MS",
+    "Product": "Street Footwear",
+    "UnitsSold": 22363
+  },
+  {
+    "StateFull": "Missouri",
+    "State": "MO",
+    "Product": "Apparel",
+    "UnitsSold": 11029
+  },
+  {
+    "StateFull": "Missouri",
+    "State": "MO",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 10217
+  },
+  {
+    "StateFull": "Missouri",
+    "State": "MO",
+    "Product": "Street Footwear",
+    "UnitsSold": 15158
+  },
+  {
+    "StateFull": "Montana",
+    "State": "MT",
+    "Product": "Apparel",
+    "UnitsSold": 11750
+  },
+  {
+    "StateFull": "Montana",
+    "State": "MT",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 14295
+  },
+  {
+    "StateFull": "Montana",
+    "State": "MT",
+    "Product": "Street Footwear",
+    "UnitsSold": 16668
+  },
+  {
+    "StateFull": "Nebraska",
+    "State": "NE",
+    "Product": "Apparel",
+    "UnitsSold": 4721
+  },
+  {
+    "StateFull": "Nebraska",
+    "State": "NE",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 5059
+  },
+  {
+    "StateFull": "Nebraska",
+    "State": "NE",
+    "Product": "Street Footwear",
+    "UnitsSold": 9374
+  },
+  {
+    "StateFull": "Nevada",
+    "State": "NV",
+    "Product": "Apparel",
+    "UnitsSold": 14647
+  },
+  {
+    "StateFull": "Nevada",
+    "State": "NV",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 17068
+  },
+  {
+    "StateFull": "Nevada",
+    "State": "NV",
+    "Product": "Street Footwear",
+    "UnitsSold": 20116
+  },
+  {
+    "StateFull": "New Hampshire",
+    "State": "NH",
+    "Product": "Apparel",
+    "UnitsSold": 12427
+  },
+  {
+    "StateFull": "New Hampshire",
+    "State": "NH",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 11243
+  },
+  {
+    "StateFull": "New Hampshire",
+    "State": "NH",
+    "Product": "Street Footwear",
+    "UnitsSold": 17142
+  },
+  {
+    "StateFull": "New Jersey",
+    "State": "NJ",
+    "Product": "Apparel",
+    "UnitsSold": 7817
+  },
+  {
+    "StateFull": "New Jersey",
+    "State": "NJ",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 6991
+  },
+  {
+    "StateFull": "New Jersey",
+    "State": "NJ",
+    "Product": "Street Footwear",
+    "UnitsSold": 11732
+  },
+  {
+    "StateFull": "New Mexico",
+    "State": "NM",
+    "Product": "Apparel",
+    "UnitsSold": 14961
+  },
+  {
+    "StateFull": "New Mexico",
+    "State": "NM",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 17319
+  },
+  {
+    "StateFull": "New Mexico",
+    "State": "NM",
+    "Product": "Street Footwear",
+    "UnitsSold": 20353
+  },
+  {
+    "StateFull": "New York",
+    "State": "NY",
+    "Product": "Apparel",
+    "UnitsSold": 54577
+  },
+  {
+    "StateFull": "New York",
+    "State": "NY",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 52153
+  },
+  {
+    "StateFull": "New York",
+    "State": "NY",
+    "Product": "Street Footwear",
+    "UnitsSold": 62410
+  },
+  {
+    "StateFull": "North Carolina",
+    "State": "NC",
+    "Product": "Apparel",
+    "UnitsSold": 20231
+  },
+  {
+    "StateFull": "North Carolina",
+    "State": "NC",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 19062
+  },
+  {
+    "StateFull": "North Carolina",
+    "State": "NC",
+    "Product": "Street Footwear",
+    "UnitsSold": 23643
+  },
+  {
+    "StateFull": "North Dakota",
+    "State": "ND",
+    "Product": "Apparel",
+    "UnitsSold": 6578
+  },
+  {
+    "StateFull": "North Dakota",
+    "State": "ND",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 5788
+  },
+  {
+    "StateFull": "North Dakota",
+    "State": "ND",
+    "Product": "Street Footwear",
+    "UnitsSold": 10415
+  },
+  {
+    "StateFull": "Ohio",
+    "State": "OH",
+    "Product": "Apparel",
+    "UnitsSold": 15257
+  },
+  {
+    "StateFull": "Ohio",
+    "State": "OH",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 14116
+  },
+  {
+    "StateFull": "Ohio",
+    "State": "OH",
+    "Product": "Street Footwear",
+    "UnitsSold": 18408
+  },
+  {
+    "StateFull": "Oklahoma",
+    "State": "OK",
+    "Product": "Apparel",
+    "UnitsSold": 12337
+  },
+  {
+    "StateFull": "Oklahoma",
+    "State": "OK",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 11114
+  },
+  {
+    "StateFull": "Oklahoma",
+    "State": "OK",
+    "Product": "Street Footwear",
+    "UnitsSold": 17008
+  },
+  {
+    "StateFull": "Oregon",
+    "State": "OR",
+    "Product": "Apparel",
+    "UnitsSold": 14042
+  },
+  {
+    "StateFull": "Oregon",
+    "State": "OR",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 16764
+  },
+  {
+    "StateFull": "Oregon",
+    "State": "OR",
+    "Product": "Street Footwear",
+    "UnitsSold": 19730
+  },
+  {
+    "StateFull": "Pennsylvania",
+    "State": "PE",
+    "Product": "Apparel",
+    "UnitsSold": 7472
+  },
+  {
+    "StateFull": "Pennsylvania",
+    "State": "PE",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 7326
+  },
+  {
+    "StateFull": "Pennsylvania",
+    "State": "PE",
+    "Product": "Street Footwear",
+    "UnitsSold": 12864
+  },
+  {
+    "StateFull": "Rhode Island",
+    "State": "RI",
+    "Product": "Apparel",
+    "UnitsSold": 7845
+  },
+  {
+    "StateFull": "Rhode Island",
+    "State": "RI",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 6898
+  },
+  {
+    "StateFull": "Rhode Island",
+    "State": "RI",
+    "Product": "Street Footwear",
+    "UnitsSold": 12730
+  },
+  {
+    "StateFull": "South Carolina",
+    "State": "SC",
+    "Product": "Apparel",
+    "UnitsSold": 23378
+  },
+  {
+    "StateFull": "South Carolina",
+    "State": "SC",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 22356
+  },
+  {
+    "StateFull": "South Carolina",
+    "State": "SC",
+    "Product": "Street Footwear",
+    "UnitsSold": 26876
+  },
+  {
+    "StateFull": "South Dakota",
+    "State": "SD",
+    "Product": "Apparel",
+    "UnitsSold": 6608
+  },
+  {
+    "StateFull": "South Dakota",
+    "State": "SD",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 5846
+  },
+  {
+    "StateFull": "South Dakota",
+    "State": "SD",
+    "Product": "Street Footwear",
+    "UnitsSold": 10519
+  },
+  {
+    "StateFull": "Tennessee",
+    "State": "TN",
+    "Product": "Apparel",
+    "UnitsSold": 20082
+  },
+  {
+    "StateFull": "Tennessee",
+    "State": "TN",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 21131
+  },
+  {
+    "StateFull": "Tennessee",
+    "State": "TN",
+    "Product": "Street Footwear",
+    "UnitsSold": 24864
+  },
+  {
+    "StateFull": "Texas",
+    "State": "TX",
+    "Product": "Apparel",
+    "UnitsSold": 48912
+  },
+  {
+    "StateFull": "Texas",
+    "State": "TX",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 51744
+  },
+  {
+    "StateFull": "Texas",
+    "State": "TX",
+    "Product": "Street Footwear",
+    "UnitsSold": 58844
+  },
+  {
+    "StateFull": "Utah",
+    "State": "UT",
+    "Product": "Apparel",
+    "UnitsSold": 15125
+  },
+  {
+    "StateFull": "Utah",
+    "State": "UT",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 14198
+  },
+  {
+    "StateFull": "Utah",
+    "State": "UT",
+    "Product": "Street Footwear",
+    "UnitsSold": 19225
+  },
+  {
+    "StateFull": "Vermont",
+    "State": "VT",
+    "Product": "Apparel",
+    "UnitsSold": 11589
+  },
+  {
+    "StateFull": "Vermont",
+    "State": "VT",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 10594
+  },
+  {
+    "StateFull": "Vermont",
+    "State": "VT",
+    "Product": "Street Footwear",
+    "UnitsSold": 16502
+  },
+  {
+    "StateFull": "Virginia",
+    "State": "VA",
+    "Product": "Apparel",
+    "UnitsSold": 14531
+  },
+  {
+    "StateFull": "Virginia",
+    "State": "VA",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 17283
+  },
+  {
+    "StateFull": "Virginia",
+    "State": "VA",
+    "Product": "Street Footwear",
+    "UnitsSold": 21155
+  },
+  {
+    "StateFull": "Washington",
+    "State": "WA",
+    "Product": "Apparel",
+    "UnitsSold": 12637
+  },
+  {
+    "StateFull": "Washington",
+    "State": "WA",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 15672
+  },
+  {
+    "StateFull": "Washington",
+    "State": "WA",
+    "Product": "Street Footwear",
+    "UnitsSold": 18302
+  },
+  {
+    "StateFull": "West Virginia",
+    "State": "WV",
+    "Product": "Apparel",
+    "UnitsSold": 9225
+  },
+  {
+    "StateFull": "West Virginia",
+    "State": "WV",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 8220
+  },
+  {
+    "StateFull": "West Virginia",
+    "State": "WV",
+    "Product": "Street Footwear",
+    "UnitsSold": 12428
+  },
+  {
+    "StateFull": "Wisconsin",
+    "State": "WI",
+    "Product": "Apparel",
+    "UnitsSold": 6933
+  },
+  {
+    "StateFull": "Wisconsin",
+    "State": "WI",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 6184
+  },
+  {
+    "StateFull": "Wisconsin",
+    "State": "WI",
+    "Product": "Street Footwear",
+    "UnitsSold": 10833
+  },
+  {
+    "StateFull": "Wyoming",
+    "State": "WY",
+    "Product": "Apparel",
+    "UnitsSold": 16057
+  },
+  {
+    "StateFull": "Wyoming",
+    "State": "WY",
+    "Product": "Athletic Footwear",
+    "UnitsSold": 15161
+  },
+  {
+    "StateFull": "Wyoming",
+    "State": "WY",
+    "Product": "Street Footwear",
+    "UnitsSold": 19010
+  }
+ ]

@@ -1,0 +1,457 @@
+[
+ {
+   "A": "Retailer",
+   "B": "Year",
+   "C": "Product",
+   "D": "Gender",
+   "E": "TotalSales"
+ },
+ {
+   "A": "Amazon",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "10474770"
+ },
+ {
+   "A": "Amazon",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "15710639"
+ },
+ {
+   "A": "Amazon",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "12011959"
+ },
+ {
+   "A": "Amazon",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "7935255.000000001"
+ },
+ {
+   "A": "Amazon",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "22161652"
+ },
+ {
+   "A": "Amazon",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "9404637.000000002"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "6799176"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "8227984"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "7145118"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "4818187"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "10727871"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "5158469"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "22709819"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "35068130"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "29335297.000000004"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "19421437"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "46753704"
+ },
+ {
+   "A": "Foot Locker",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "23929528"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "219254"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "150562"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "170058"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "218629"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "14164965"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "20315239"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "17666062"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "12343307"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "22251015"
+ },
+ {
+   "A": "Kohl's",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "14615662"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "2014903"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "2454459"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "2714535.0000000005"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "2529442.0000000005"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "2950740"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "2597022.0000000005"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "22810383"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "34658798"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "28175199"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "20615846"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "35721530"
+ },
+ {
+   "A": "Sports Direct",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "25228140"
+ },
+ {
+   "A": "Walmart",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "5601408"
+ },
+ {
+   "A": "Walmart",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "7787848"
+ },
+ {
+   "A": "Walmart",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "5092706"
+ },
+ {
+   "A": "Walmart",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "4052545"
+ },
+ {
+   "A": "Walmart",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "5489020"
+ },
+ {
+   "A": "Walmart",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "4861473"
+ },
+ {
+   "A": "Walmart",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "5889272"
+ },
+ {
+   "A": "Walmart",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "7528251"
+ },
+ {
+   "A": "Walmart",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "8507698"
+ },
+ {
+   "A": "Walmart",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "4710247"
+ },
+ {
+   "A": "Walmart",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "9435235"
+ },
+ {
+   "A": "Walmart",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "5602707"
+ },
+ {
+   "A": "West Gear",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "11801477"
+ },
+ {
+   "A": "West Gear",
+   "B": "2020",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "16720041"
+ },
+ {
+   "A": "West Gear",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "16622849"
+ },
+ {
+   "A": "West Gear",
+   "B": "2020",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "12079156"
+ },
+ {
+   "A": "West Gear",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "18485331"
+ },
+ {
+   "A": "West Gear",
+   "B": "2020",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "14590412"
+ },
+ {
+   "A": "West Gear",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Men",
+   "E": "21462459"
+ },
+ {
+   "A": "West Gear",
+   "B": "2021",
+   "C": "Apparel",
+   "D": "Women",
+   "E": "30567471"
+ },
+ {
+   "A": "West Gear",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Men",
+   "E": "26183003"
+ },
+ {
+   "A": "West Gear",
+   "B": "2021",
+   "C": "Athletic Footwear",
+   "D": "Women",
+   "E": "17975912"
+ },
+ {
+   "A": "West Gear",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Men",
+   "E": "34680088"
+ },
+ {
+   "A": "West Gear",
+   "B": "2021",
+   "C": "Street Footwear",
+   "D": "Women",
+   "E": "21796134"
+ }
+]

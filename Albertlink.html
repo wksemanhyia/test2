@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adidas Sales Donut Chart</title>
+    <style>
+        /* CSS styles */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            position: absolute;
+            top: 0px; /* Adjust the top position as needed */
+            left: 0px; /* Adjust the left position as needed */
+            width: 100%; /* Set the width to cover the entire width of the page */
+            background-color: #5a5b5b; /* Set the background color */
+            color: rgb(255, 255, 255); /* Set the text color to white for better visibility */
+            padding: 30px; /* Add padding for spacing around the text */
+            margin: 0; /* Remove any default margin */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            text-align: center; /* Center the text horizontally */
+            font-family: 'Arial', sans-serif;
+            font-size: 50px;
+        }
+
+        h1 img {
+            position: absolute; /* Position the image absolutely */
+            top: 50%; /* Adjust the top position to vertically center the image */
+            transform: translateY(-50%); /* Adjust translateY to vertically center the image */
+            left: 0px; /* Adjust the left position to position the image at the far left corner */
+        }
+
+        .subtitle {
+            font-size: 32px; /* Adjust font size */
+            color: #000000; /* Adjust text color */
+            position: absolute; /* Position the subtitle absolutely */
+            top: 90px; /* Adjust the top position as needed */
+            left: 790px; /* Adjust the left position as needed */
+        }
+
+        #chart-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+        }
+
+        #filters-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #gender-filter,
+        #year-filter {
+            margin-right: 20px;
+        }
+
+        #note {
+            position: absolute;
+            top: 550px;
+            right: -50px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        text {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .slice:hover {
+            animation: shake 0.5s ease-in-out infinite alternate;
+        }
+
+        .slice.active {
+            animation: moveDown 0.2s ease-in-out forwards, moveUp 0.2s ease-in-out forwards;
+        }
+
+        @keyframes shake {
+            from {
+                transform: translateX(-2px);
+            }
+
+            to {
+                transform: translateX(2px);
+            }
+        }
+
+        @keyframes moveDown {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes moveUp {
+            from {
+                transform: translateY(20px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #second-chart-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        #legend {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <img src="Adidas.jpeg" alt="First Logo" style="height: 95px; margin-right: 0px;"> <!-- Adjust the image height and margin as needed -->
+        <img src="Teesside.jpeg" alt="Second Logo" style="height: 98px; margin-left: 1755px;"> <!-- Adjust the image height and margin as needed -->
+        US Adidas Sales
+    </h1>
+
+    <h2 class="subtitle">Total Sales Per Retailer</h2>
+
+    <div id="filters-container">
+        <div id="gender-filter">
+            <label for="gender-select">Select Gender:</label>
+            <select id="gender-select">
+                <option value="All">All</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+            </select>
+        </div>
+
+        <div id="year-filter">
+            <label for="year-select">Select Year:</label>
+            <select id="year-select">
+                <option value="All">All</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="chart-container">
+        <div id="note">
+            <p>Apparel: A</p>
+            <p>Street Footwear: SF</p>
+            <p>Athletic Footwear: AF</p>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        const width = 600;
+        const height = 600;
+        const radius = Math.min(width, height) / 2;
+
+        const svg = d3.select("#chart-container")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", `translate(${width / 2},${height / 2})`);
+
+        // Define your custom color scale with the specified colors
+        const customColorScale = d3.scaleOrdinal()
+            .range(["red", "green", "blue", "purple", "brown", "aqua"]);
+
+        const arc = d3.arc()
+            .innerRadius(radius * 0.6)
+            .outerRadius(radius - 1);
+
+        const secondChartSvg = d3.select("#chart-container")
+            .append("svg")
+            .attr("id", "second-chart-container")
+            .attr("width", radius * 1.2)
+            .attr("height", radius * 1.2)
+            .style("display", "none");
+
+        const secondChartGroup = secondChartSvg.append("g")
+            .attr("transform", `translate(${radius * 0.6}, ${radius * 0.6})`);
+
+        const secondChartArc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius * 0.4);
+
+        function createDonutChart(data, svg, colorScale) {
+            // Define a mapping of long names to abbreviations
+            const labelMap = {
+                "Apparel": "A",
+                "Street Footwear": "SF",
+                "Athletic Footwear": "AF"
+            };
+
+            const filteredData = data.filter(d => labelMap[d[0]]); // Filter data to include only specified labels
+
+            const arcs = d3.pie()
+                .padAngle(0.05)
+                .value(d => d[1]) // Use total sales for each product
+                .sort(null)
+                (filteredData);
+
+            svg.selectAll("*").remove();
+
+            const paths = svg.selectAll("path")
+                .data(arcs)
+                .enter()
+                .append("path")
+                .attr("d", secondChartArc)
+                .attr("fill", (d, i) => colorScale(i)) // Use the color scale for the fill color
+                .attr("stroke", "white")
+                .style("stroke-width", "2px")
+                .attr("class", "slice")
+                .on("mouseover", function (event, d) {
+                    d3.select(this).classed("hovered", true);
+                })
+                .on("mouseout", function (event, d) {
+                    d3.select(this).classed("hovered", false);
+                });
+
+            const texts = svg.selectAll("text")
+                .data(arcs)
+                .enter()
+                .append("text")
+                .attr("transform", d => `translate(${secondChartArc.centroid(d)})`)
+                .attr("text-anchor", "middle")
+                .text(d => `${labelMap[d.data[0]]}: $${(d.data[1] / 1000000).toFixed(1)}M`) // Display abbreviated name or original name and sales amount
+                .style("font-size", "16px")
+                .style("font-weight", "bold")
+                .style("fill", "black"); // Change the font color here;
+        }
+
+        function updateSecondChart(data, selectedGender, selectedYear) {
+            // Filter data based on selected Gender and Year
+            const filteredData = data.filter(item => {
+                if (selectedGender !== "All" && selectedYear !== "All") {
+                    return item.D === selectedGender && item.B === selectedYear;
+                } else if (selectedGender !== "All") {
+                    return item.D === selectedGender;
+                } else if (selectedYear !== "All") {
+                    return item.B === selectedYear;
+                } else {
+                    return true; // Return all data if no filters selected
+                }
+            });
+
+            const aggregatedSecondChartData = d3.rollups(
+                filteredData,
+                v => d3.sum(v, d => +d.E),
+                d => d.C
+            );
+
+            const numShades = aggregatedSecondChartData.length;
+            const secondChartColor = d3.scaleSequential(d3.interpolateRgb("red", "white"))
+                .domain([0, numShades]);
+
+            createDonutChart(aggregatedSecondChartData, secondChartGroup, secondChartColor);
+        }
+
+        function updateChartLabels(arcs) {
+            // Update the labels in the main chart
+            svg.selectAll("text").remove(); // Remove existing labels
+
+            svg.selectAll("text")
+                .data(arcs.filter(d => d.data[0] !== "Retailer"))
+                .enter()
+                .append("text")
+                .attr("transform", d => `translate(${arc.centroid(d)})`)
+                .attr("text-anchor", "middle")
+                .style("font-size", "16px")
+                .style("font-weight", "bold")
+                .style("fill", "black") // Change the font color here
+                .each(function (d) {
+                    const text = d3.select(this);
+                    const lines = d.data[0].split("\n");
+                    lines.forEach((line, i) => {
+                        text.append("tspan")
+                            .attr("dy", i === 0 ? "0" : "1.2em")
+                            .attr("x", 0)
+                            .attr("text-align", "center")
+                            .text(line);
+                    });
+                    text.append("tspan")
+                        .attr("dy", "1.2em")
+                        .attr("x", 0)
+                        .attr("text-align", "center")
+                        .text(`$${(d.data[1] / 1000000).toFixed(1)}M`);
+                });
+        }
+
+        d3.json("adidassales.json").then(function (data) {
+            try {
+                const aggregatedData = d3.rollups(
+                    data,
+                    v => d3.sum(v, d => +d.E),
+                    d => d.A
+                );
+
+                const arcs = d3.pie()
+                    .padAngle(0.05)
+                    .value(d => d[1])
+                    .sort(null)
+                    (aggregatedData);
+
+                const paths = svg.selectAll("path")
+                    .data(arcs)
+                    .enter()
+                    .append("path")
+                    .attr("d", arc)
+                    .attr("fill", (d, i) => customColorScale(i)) // Use custom color scale for fill color
+                    .attr("stroke", "white")
+                    .style("stroke-width", "2px")
+                    .attr("class", "slice")
+                    .on("mouseover", function (event, d) {
+                        d3.select(this).classed("hovered", true);
+                    })
+                    .on("mouseout", function (event, d) {
+                        d3.select(this).classed("hovered", false);
+                    });
+
+                paths.on("click", function (event, d) {
+                    const selectedRetailer = d.data[0];
+                    const selectedRetailerColor = d3.select(this).attr("fill"); // Get the color of the selected retailer
+                    const retailerData = data.filter(item => item.A === selectedRetailer);
+                    const productData = d3.rollups(
+                        retailerData,
+                        v => d3.sum(v, d => +d.E),
+                        d => d.C
+                    );
+
+                    // Generate shades of the selected color for the second chart
+                    const numShades = productData.length; // Number of shades equals the number of products
+                    const secondChartColor = d3.scaleSequential(d3.interpolateRgb(selectedRetailerColor, "white"))
+                        .domain([0, numShades]); // Use sequential color scale to generate shades
+
+                    // Check if slicer value is "All" before displaying the second chart
+                    if (slicerValue === "All") {
+                        createDonutChart(productData, secondChartGroup, secondChartColor);
+                        // Show the second chart
+                        secondChartSvg.style("display", "block");
+                    }
+                });
+
+                // Function to update the charts based on selected Gender and Year
+                function updateCharts() {
+                    const selectedGender = document.getElementById("gender-select").value;
+                    const selectedYear = document.getElementById("year-select").value;
+
+                    // Update the slicer value
+                    updateSlicerValue(selectedGender);
+
+                    // Filter data based on selected Gender and Year
+                    const filteredData = data.filter(item => {
+                        if (selectedGender !== "All" && selectedYear !== "All") {
+                            return item.D === selectedGender && item.B === selectedYear;
+                        } else if (selectedGender !== "All") {
+                            return item.D === selectedGender;
+                        } else if (selectedYear !== "All") {
+                            return item.B === selectedYear;
+                        } else {
+                            return true; // Return all data if no filters selected
+                        }
+                    });
+
+                    // Update the main chart with filtered data
+                    const aggregatedData = d3.rollups(
+                        filteredData,
+                        v => d3.sum(v, d => +d.E),
+                        d => d.A
+                    );
+
+                    const arcs = d3.pie()
+                        .padAngle(0.05)
+                        .value(d => d[1])
+                        .sort(null)
+                        (aggregatedData);
+
+                    const paths = svg.selectAll("path")
+                        .data(arcs);
+
+                    paths.exit().remove(); // Remove unnecessary paths
+
+                    paths.enter() // Enter new paths
+                        .append("path")
+                        .merge(paths) // Merge existing paths with new paths
+                        .attr("d", arc)
+                        .attr("fill", (d, i) => customColorScale(i)) // Use custom color scale for fill color
+                        .attr("stroke", "white")
+                        .style("stroke-width", "2px")
+                        .attr("class", "slice")
+                        .on("mouseover", function (event, d) {
+                            d3.select(this).classed("hovered", true);
+                        })
+                        .on("mouseout", function (event, d) {
+                            d3.select(this).classed("hovered", false);
+                        });
+
+                    updateChartLabels(arcs);
+
+                    // Hide the second chart
+                    secondChartSvg.style("display", "none");
+
+                    // Update the second chart if slicer value is "All"
+                    if (slicerValue === "All") {
+                        updateSecondChart(filteredData, selectedGender, selectedYear);
+                    }
+                }
+
+                // Add event listeners to the dropdown menus
+                document.getElementById("gender-select").addEventListener("change", updateCharts);
+                document.getElementById("year-select").addEventListener("change", updateCharts);
+
+                // Slicer value
+                let slicerValue = "All";
+
+                // Function to update slicer value
+                function updateSlicerValue(value) {
+                    slicerValue = value;
+                }
+
+                // Initial chart update
+                updateCharts();
+
+            } catch (error) {
+                console.error("Error processing data or creating chart:", error);
+            }
+        }).catch(function (error) {
+            console.error("Error fetching JSON data:", error);
+        });
+    </script>
+</body>
+
+</html>

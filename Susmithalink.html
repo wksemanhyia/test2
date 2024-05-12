@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Adidas Sales</title>
+    <style>
+        /* Add your CSS styles here */
+        .text {
+            font-size: 12px; /* Increased font size */
+            fill: white;
+            text-anchor: end; /* Align text to the end of the anchor point */
+            font-weight: bold; /* Bold weight */
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .axis-label {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .tick text {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        #salesMethodContainer {
+            position: absolute;
+            top: 140px;
+            right: 700px;
+            font-size: 20px; /* Adjust the font size */
+        }
+
+        #salesMethodLabel {
+            font-weight: bold; /* Make the label bold */
+            font-size: 20px; /* Adjust the font size */
+        }
+
+        .salesMethodSelect {
+            width: 120px; /* Adjust the width of the select dropdown */
+            padding: 8px; /* Adjust the padding */
+            font-size: 20px; /* Adjust the font size */
+        }
+
+        /* Tooltip CSS */
+        .tooltip {
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip.active {
+            opacity: 1;
+        }
+
+        h1 {
+            position: absolute;
+            top: 0px; /* Adjust the top position as needed */
+            left: 0px; /* Adjust the left position as needed */
+            width: 100%; /* Set the width to cover the entire width of the page */
+            background-color: #5a5b5b; /* Set the background color */
+            color: rgb(255, 255, 255); /* Set the text color to white for better visibility */
+            padding: 30px; /* Add padding for spacing around the text */
+            margin: 0; /* Remove any default margin */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            text-align: center; /* Center the text horizontally */
+            font-family: 'Arial', sans-serif; /* Change the font family */
+            font-size: 50px; /* Adjust the font size as needed */
+        }
+
+        h1 img {
+            position: absolute; /* Position the image absolutely */
+            top: 50%; /* Adjust the top position to vertically center the image */
+            transform: translateY(-50%); /* Adjust translateY to vertically center the image */
+            left: 0px; /* Adjust the left position to position the image at the far left corner */
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <img src="Adidas.jpeg" alt="First Logo" style="height: 95px; margin-right: 0px;"> <!-- Adjust the image height and margin as needed -->
+        <img src="Teesside.jpeg" alt="Second Logo" style="height: 98px; margin-left: 1755px;"> <!-- Adjust the image height and margin as needed -->
+        US Adidas Sales
+    </h1>
+    
+    <div id="salesMethodContainer">
+        <label for="salesMethod">Sales Method:</label>
+        <select id="salesMethod" class="salesMethodSelect">
+            <option value="All">All</option>
+            <option value="In-store">In-store</option>
+            <option value="Online">Online</option>
+            <option value="Outlet">Outlet</option>
+        </select>
+    </div>
+    <svg id="chart" width="1000" height="600"></svg>
+
+    <div class="tooltip"></div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        // Set up SVG dimensions
+        const margin = { top: 200, right: 100, bottom: 50, left: 150 };
+        const width = 1000 - margin.left - margin.right;
+        const height = 800 - margin.top - margin.bottom;
+
+        // Define an array of colors
+        const colors = ['#2ca02c', '#ff7f0e', '#1f77b4', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'];
+
+        // Create SVG container
+        const heightWithLabel = height + margin.bottom + 60; // Increased container height
+        const svg = d3.select("#chart")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", heightWithLabel + margin.top) // Adjusted height to accommodate the label
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Initialize scales and axes
+        let xScale = d3.scaleLinear().range([0, width]);
+        let yScale = d3.scaleBand().range([0, height]).padding(0.1);
+
+        const xAxis = svg.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", "translate(0," + height + ")");
+
+        const yAxis = svg.append("g")
+            .attr("class", "y-axis");
+
+        // Add tooltip
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        // Load the JSON data
+        d3.json("OperatingProfitState.json").then(function(data) {
+            // Function to update chart based on selected sales method
+            function updateChart(selectedMethod) {
+                // Filter data based on selected sales method
+                const filteredData = selectedMethod === "All" ? data : data.filter(d => d[2] === selectedMethod);
+
+                // Process the filtered data
+                const profitByState = d3.rollup(filteredData, v => d3.sum(v, d => d[4]), d => d[0]);
+                const topStates = Array.from(profitByState, ([state, profit]) => ({ state, profit }))
+                    .sort((a, b) => b.profit - a.profit)
+                    .slice(0, 10);
+
+                // Update scales' domains
+                xScale.domain([0, d3.max(topStates, d => d.profit)]);
+                yScale.domain(topStates.map(d => d.state));
+
+                // Update axes
+                xAxis.transition().duration(3000).call(d3.axisBottom(xScale).tickFormat(d3.format(".2s")));
+                yAxis.transition().duration(3000).call(d3.axisLeft(yScale));
+
+                // Update bars
+                const bars = svg.selectAll(".bar")
+                    .data(topStates);
+
+                bars.exit().remove();
+
+                bars.enter().append("rect")
+                    .attr("class", "bar")
+                    .attr("fill", (_, i) => colors[i])
+                    .merge(bars)
+                    .attr("y", d => yScale(d.state))
+                    .attr("height", yScale.bandwidth())
+                    .on("mouseover", function(event, d) {
+                        tooltip.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        tooltip.html(`<strong>${d.state}</strong><br/>Total Profit: $${(d.profit).toFixed(2)}`)
+                            .style("left", (event.pageX) + "px")
+                            .style("top", (event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {
+                        tooltip.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    })
+                    .transition()
+                    .duration(3000)
+                    .delay((d, i) => i * 300) // Add delay based on index to stagger transitions
+                    .attr("width", d => xScale(d.profit));
+
+                // Update labels
+                const labels = svg.selectAll(".text")
+                    .data(topStates);
+
+                labels.exit().remove();
+
+                labels.enter().append("text")
+                    .attr("class", "text")
+                    .merge(labels)
+                    .transition()
+                    .duration(1000)
+                    .attr("x", d => xScale(d.profit) - 5)
+                    .attr("y", d => yScale(d.state) + yScale.bandwidth() / 2)
+                    .attr("dx", "3")
+                    .attr("dy", ".35em")
+                    .text(d => (d.profit / 1000000).toFixed(1) + "M");
+
+                // Add x-axis label
+                svg.selectAll(".x-axis-label").remove();
+                svg.append("text")
+                    .attr("class", "axis-label x-axis-label")
+                    .attr("text-anchor", "middle")
+                    .attr("x", width / 2)
+                    .attr("y", height + margin.bottom + 20)
+                    .text("Total Operating Profit");
+
+                // Add y-axis label
+                svg.selectAll(".y-axis-label").remove();
+                svg.append("text")
+                    .attr("class", "axis-label y-axis-label")
+                    .attr("text-anchor", "middle")
+                    .attr("transform", "rotate(-90)")
+                    .attr("x", -height / 2)
+                    .attr("y", -margin.left + 20)
+                    .text("State");
+
+                // Add plot title
+                svg.selectAll(".plot-title").remove();
+                svg.append("text")
+                    .attr("class", "axis-label plot-title")
+                    .attr("text-anchor", "middle")
+                    .attr("x", width / 2)
+                    .attr("y", -margin.top / 6)
+                    .text("Operating Profit: Top 10 States")
+                    .style("font-size", "30px")
+                    .style("font-weight", "bold");
+            }
+
+            // Initialize chart with "All" sales method
+            updateChart("All");
+
+            // Add event listener to the slicer
+            document.getElementById("salesMethod").addEventListener("change", function() {
+                const selectedMethod = this.value;
+                updateChart(selectedMethod);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

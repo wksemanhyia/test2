@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>US Adidas Sales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    #chart-container {
+        width: 1280px;
+        height: 800px;
+        margin: 160px auto 130px auto; /* Increase margin-top to shift chat downwards */
+        position: relative;
+    }
+    
+    svg {
+        width: 100%;
+        height: 100%;
+        font: 8px sans-serif;
+    }
+    
+    .legend {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+    
+    .legend select {
+        padding: 5px;
+        font-size: 14px;
+    }
+    
+    .legend-item {
+        cursor: pointer;
+    }
+    
+    .legend-item:hover rect {
+        opacity: 0.7;
+    }
+    
+    .scale-circle {
+        fill: none;
+        stroke-width: 1.5;
+        stroke: #ccc;
+    }
+    
+    .scale-label {
+        font-size: 10px;
+        text-anchor: middle;
+    }
+    
+    .product-legend {
+        position: absolute;
+        top: 25%;
+        left: 73%;
+        z-index: 1000;
+    }
+    
+    .product-legend select {
+        padding: 5px;
+        font-size: 14px;
+    }
+    
+    .table-legend {
+        position: absolute;
+        top: 18%;
+        left: 1.4%; /* Adjusted to avoid overlapping with product legend */
+        z-index: 1000;
+    }
+    
+    .table-legend table {
+        border-collapse: collapse;
+    }
+
+
+    .table-legend th,
+    .table-legend td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 16px; /* Adjusted font size */
+    }
+
+    /* Left-align text in the first column */
+    .table-legend th:first-child,
+    .table-legend td:first-child {
+    text-align: left;
+    }
+
+    /* Center-align text in the second column */
+    .table-legend th:nth-child(2),
+    .table-legend td:nth-child(2) {
+        text-align: center;
+    }
+
+    .right-table-legend {
+        position: absolute;
+        top: 18%;
+        left: 88%; /* Adjusted to avoid overlapping with product legend */
+        z-index: 1000;
+    }
+    
+    .right-table-legend table {
+        border-collapse: collapse;
+    }
+    .right-table-legend th,
+    .right-table-legend td {
+        border: 1px solid #ccc;
+        padding: 5px;
+        font-size: 16px; /* Adjusted font size */
+    }
+
+    /* Left-align text in the first column */
+    .right-table-legend th:first-child,
+    .right-table-legend td:first-child {
+        text-align: left;
+    }
+
+    /* Center-align text in the second column */
+    .right-table-legend th:nth-child(2),
+    .right-table-legend td:nth-child(2) {
+        text-align: center;
+    }
+ 
+    .flag {
+        width: 20px; /* Adjust the width of the flag images */
+        height: auto;
+        vertical-align: middle; /* Align images vertically */
+        margin-right: 5px; /* Adjust spacing between flag and state name */
+    }
+    
+    .tooltip {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        pointer-events: none;
+        opacity: 0;
+    }
+    
+    h1 {
+            position: absolute;
+            top: 0px; /* Adjust the top position as needed */
+            left: 0px; /* Adjust the left position as needed */
+            width: 100%; /* Set the width to cover the entire width of the page */
+            background-color: #5a5b5b; /* Set the background color */
+            color: rgb(255, 255, 255); /* Set the text color to white for better visibility */
+            padding: 30px; /* Add padding for spacing around the text */
+            margin: 0; /* Remove any default margin */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            text-align: center; /* Center the text horizontally */
+            font-family: 'Arial', sans-serif;
+            font-size: 50px;
+        }
+
+        h1 img {
+            position: absolute; /* Position the image absolutely */
+            top: 50%; /* Adjust the top position to vertically center the image */
+            transform: translateY(-50%); /* Adjust translateY to vertically center the image */
+            left: 0px; /* Adjust the left position to position the image at the far left corner */
+        }
+
+        .subtitle {
+            font-size: 32px; /* Adjust font size */
+            color: #000000; /* Adjust text color */
+            position: absolute; /* Position the subtitle absolutely */
+            top: 90px; /* Adjust the top position as needed */
+            left: 790px; /* Adjust the left position as needed */
+        }
+
+</style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>
+        <img src="Adidas.jpeg" alt="First Logo" style="height: 95px; margin-right: 0px;"> <!-- Adjust the image height and margin as needed -->
+        <img src="Teesside.jpeg" alt="Second Logo" style="height: 98px; margin-left: 1735px;"> <!-- Adjust the image height and margin as needed -->
+        US Adidas Sales
+    </h1>
+
+    <h2 class="subtitle">Total Units Sold by State</h2>
+
+    <div id="chart-container"></div>
+    <div class="product-legend">
+        <select id="category-select">
+            <option value="All">All Products</option>
+            <option value="Apparel">Apparel</option>
+            <option value="Athletic Footwear">Athletic Footwear</option>
+            <option value="Street Footwear">Street Footwear</option>
+        </select>
+    </div>
+    <div class="table-legend">
+        <table>
+            <thead>
+                <tr>
+                    <th>STATE</th>
+                    <th>ABBV.</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Alabama.svg/1920px-Flag_of_Alabama.svg.png" class="flag"> Alabama</td>
+                <td>AL</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Alaska.svg/1920px-Flag_of_Alaska.svg.png" class="flag"> Alaska</td>
+                <td>AK</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Flag_of_Arizona.svg/1920px-Flag_of_Arizona.svg.png" class="flag"> Arizona</td>
+                <td>AZ</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Flag_of_Arkansas.svg/1920px-Flag_of_Arkansas.svg.png" class="flag"> Arkansas</td>
+                <td>AR</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_California.svg/1920px-Flag_of_California.svg.png" class="flag"> California</td>
+                <td>CA</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Flag_of_Colorado.svg/1920px-Flag_of_Colorado.svg.png" class="flag"> Colorado</td>
+                <td>CO</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Flag_of_Connecticut.svg/1920px-Flag_of_Connecticut.svg.png" class="flag"> Connecticut</td>
+                <td>CT</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Delaware.svg/1920px-Flag_of_Delaware.svg.png" class="flag"> Delaware</td>
+                <td>DE</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Florida.svg/1920px-Flag_of_Florida.svg.png" class="flag"> Florida</td>
+                <td>FL</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Flag_of_Georgia_%28U.S._state%29.svg/1920px-Flag_of_Georgia_%28U.S._state%29.svg.png" class="flag"> Georgia</td>
+                <td>GA</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Flag_of_Hawaii.svg/1920px-Flag_of_Hawaii.svg.png" class="flag"> Hawaii</td>
+                <td>HI</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_Idaho.svg/1920px-Flag_of_Idaho.svg.png" class="flag"> Idaho</td>
+                <td>ID</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_Illinois.svg/1920px-Flag_of_Illinois.svg.png" class="flag"> Illinois</td>
+                <td>IL</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Flag_of_Indiana.svg/1920px-Flag_of_Indiana.svg.png" class="flag"> Indiana</td>
+                <td>IN</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flag_of_Iowa.svg/1920px-Flag_of_Iowa.svg.png" class="flag"> Iowa</td>
+                <td>IA</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Flag_of_Kansas.svg/1920px-Flag_of_Kansas.svg.png" class="flag"> Kansas</td>
+                <td>KS</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Flag_of_Kentucky.svg/1920px-Flag_of_Kentucky.svg.png" class="flag"> Kentucky</td>
+                <td>KY</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Flag_of_Louisiana.svg/1920px-Flag_of_Louisiana.svg.png" class="flag"> Louisiana</td>
+                <td>LA</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Flag_of_Maine.svg/1920px-Flag_of_Maine.svg.png" class="flag"> Maine</td>
+                <td>ME</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Flag_of_Maryland.svg/1920px-Flag_of_Maryland.svg.png" class="flag"> Maryland</td>
+                <td>MD</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Massachusetts.svg/1920px-Flag_of_Massachusetts.svg.png" class="flag"> Massachusetts</td>
+                <td>MA</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Flag_of_Michigan.svg/1920px-Flag_of_Michigan.svg.png" class="flag"> Michigan</td>
+                <td>MI</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Flag_of_Minnesota.svg/1920px-Flag_of_Minnesota.svg.png" class="flag"> Minnesota</td>
+                <td>MN</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Flag_of_Mississippi.svg/1920px-Flag_of_Mississippi.svg.png" class="flag"> Mississippi</td>
+                <td>MS</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Flag_of_Missouri.svg/1920px-Flag_of_Missouri.svg.png" class="flag"> Missouri</td>
+                <td>MO</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="right-table-legend">
+        <table>
+            <thead>
+                <tr>
+                    <th>STATE</th>
+                    <th>ABBV.</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_Montana.svg/1920px-Flag_of_Montana.svg.png" class="flag"> Montana</td>
+                <td>MT</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Flag_of_Nebraska.svg/1920px-Flag_of_Nebraska.svg.png" class="flag"> Nebraska</td>
+                <td>NE</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Flag_of_Nevada.svg/1920px-Flag_of_Nevada.svg.png" class="flag"> Nevada</td>
+                <td>NV</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Flag_of_New_Hampshire.svg/1920px-Flag_of_New_Hampshire.svg.png" class="flag"> New Hampshire</td>
+                <td>NH</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Flag_of_New_Jersey.svg/1920px-Flag_of_New_Jersey.svg.png" class="flag"> New Jersey</td>
+                <td>NJ</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_New_Mexico.svg/1920px-Flag_of_New_Mexico.svg.png" class="flag"> New Mexico</td>
+                <td>NM</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_New_York.svg/1920px-Flag_of_New_York.svg.png" class="flag"> New York</td>
+                <td>NY</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Flag_of_North_Carolina.svg/1920px-Flag_of_North_Carolina.svg.png" class="flag"> North Carolina</td>
+                <td>NC</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Flag_of_North_Dakota.svg/1920px-Flag_of_North_Dakota.svg.png" class="flag"> North Dakota</td>
+                <td>ND</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Ohio.svg/1920px-Flag_of_Ohio.svg.png" class="flag"> Ohio</td>
+                <td>OH</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Flag_of_Oklahoma.svg/1920px-Flag_of_Oklahoma.svg.png" class="flag"> Oklahoma</td>
+                <td>OK</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Flag_of_Oregon.svg/1920px-Flag_of_Oregon.svg.png" class="flag"> Oregon</td>
+                <td>OR</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Pennsylvania.svg/1920px-Flag_of_Pennsylvania.svg.png" class="flag"> Pennsylvania</td>
+                <td>PE</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Rhode_Island.svg/1920px-Flag_of_Rhode_Island.svg.png" class="flag"> Rhode Island</td>
+                <td>RI</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Flag_of_South_Carolina.svg/1920px-Flag_of_South_Carolina.svg.png" class="flag"> South Carolina</td>
+                <td>SC</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_South_Dakota.svg/1920px-Flag_of_South_Dakota.svg.png" class="flag"> South Dakota</td>
+                <td>SD</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Tennessee.svg/1920px-Flag_of_Tennessee.svg.png" class="flag"> Tennessee</td>
+                <td>TN</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Texas.svg/1920px-Flag_of_Texas.svg.png" class="flag"> Texas</td>
+                <td>TX</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Utah.svg/1920px-Flag_of_Utah.svg.png" class="flag"> Utah</td>
+                <td>UT</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Vermont.svg/1920px-Flag_of_Vermont.svg.png" class="flag"> Vermont</td>
+                <td>VT</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Flag_of_Virginia.svg/1920px-Flag_of_Virginia.svg.png" class="flag"> Virginia</td>
+                <td>VA</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Flag_of_Washington.svg/1920px-Flag_of_Washington.svg.png" class="flag"> Washington</td>
+                <td>WA</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Flag_of_West_Virginia.svg/1920px-Flag_of_West_Virginia.svg.png" class="flag"> West Virginia</td>
+                <td>WV</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Flag_of_Wisconsin.svg/1920px-Flag_of_Wisconsin.svg.png" class="flag"> Wisconsin</td>
+                <td>WI</td>
+            </tr>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Wyoming.svg/1920px-Flag_of_Wyoming.svg.png" class="flag"> Wyoming</td>
+                <td>WY</td>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load external HTML file (table_legend.html)
+            fetch('table_legend.html')
+                .then(response => response.text())
+                .then(html => {
+                    const tableContainer = document.getElementById('table-legend');
+                    if (tableContainer) {
+                        tableContainer.innerHTML = html;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching table content:', error);
+                });
+
+            // Define Tooltip Element
+            const tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
+const showTooltip = (event, d) => {
+    tooltip.transition()
+        .duration(200)
+        .style("opacity", 1);
+
+    // Check the structure of the data (`d`)
+    console.log("Data object:", d);
+
+    // Ensure `d` is not undefined
+    if (!d || !Array.isArray(d.data) || d.data.length !== 2) {
+        console.error("Invalid data object:", d);
+        return;
+    }
+
+    // Extract relevant data properties
+    const state = d.data[0]; // State abbreviation
+    const productsData = d.data[1]; // Array of objects containing product data
+
+    // Extract product names and units sold
+    const products = productsData.map(entry => entry.Product); // Array of product names
+    const unitsSold = productsData.map(entry => entry.UnitsSold); // Array of units sold for each product
+
+    // Log extracted values
+    console.log("State:", state);
+    console.log("Products:", products);
+    console.log("Units Sold:", unitsSold);
+
+    // Construct tooltip content
+    let tooltipContent = `State: ${state}<br>`;
+    productsData.forEach(entry => {
+        tooltipContent += `${entry.Product}: ${entry.UnitsSold} units<br>`;
+    });
+
+    // Set tooltip content and position
+    tooltip.html(tooltipContent)
+        .style("left", (event.pageX + 10) + "px")
+        .style("top", (event.pageY - 10) + "px");
+};
+
+
+            // Function to Hide Tooltip
+            const hideTooltip = () => {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0);
+            };  
+            const chart = (data, container, selectedCategory) => {
+                container.innerHTML = '';
+
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                const margin = 20;
+                const innerRadius = 120;
+                const outerRadius = Math.min(width, height) / 2 - margin;
+                const states = [...new Set(data.map(d => d.State))];
+                const categories = ["All", "Apparel", "Athletic Footwear", "Street Footwear"];
+                const groupedData = d3.group(data, d => d.State);
+                const stack = d3.stack()
+                    .keys(selectedCategory && selectedCategory !== "All" ? [selectedCategory] : categories.slice(1))
+                    .value(([, values], key) => {
+                        const value = values.find(d => d.Product === key);
+                        return value ? value.UnitsSold : 0;
+                    });
+                const stackedData = stack(groupedData);
+                const x = d3.scaleBand()
+                    .domain(states)
+                    .range([0, 2 * Math.PI])
+                    .align(0);
+
+                const y = d3.scaleLinear()
+                    .domain([0, d3.max(stackedData[stackedData.length - 1], d => d[1])])
+                    .range([innerRadius, outerRadius]);
+
+                const arc = d3.arc()
+                    .innerRadius(d => y(d[0]))
+                    .outerRadius(d => y(d[1]))
+                    .startAngle(d => x(d.data[0]))
+                    .endAngle(d => x(d.data[0]) + x.bandwidth())
+                    .padAngle(0.01)
+                    .padRadius(innerRadius);
+
+                const svg = d3.select(container)
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", `translate(${width / 2},${height / 2})`);
+
+                svg.selectAll("g")
+                    .data(stackedData)
+                    .join("g")
+                    .attr("fill", d => {
+                        if (d.key === "Apparel") return "#ff7f0e"; // orange
+                        else if (d.key === "Athletic Footwear") return "#2ca02c"; // green
+                        else if (d.key === "Street Footwear") return "#d62728"; // red
+                    })
+                    .selectAll()
+                    .data(d => d, d => d.data.State)
+                    .join(
+                        // For new elements (enter selection)
+                        enter => enter.append("path")
+                            .attr("d", arc)
+                            .attr("fill-opacity", 0)
+                            .on("mouseover", function (event, d) {
+                                showTooltip(event, d);
+                            })
+                            .on("mouseout", function () {
+                                hideTooltip();
+                            })
+                            .call(enter => enter.transition()
+                                .duration(1000) // Adjusted transition duration (1 second)
+                                .attr("fill-opacity", 1)
+                                .attrTween("d", function (d) {
+                                    const i = d3.interpolate(d.startAngle, d.endAngle);
+                                    return function (t) {
+                                        d.endAngle = i(t);
+                                        return arc(d);
+                                    };
+                                })
+                                .ease(d3.easeLinear) // Use linear easing for a steady transition
+                            ),
+                        // For existing elements (update selection)
+                        update => update
+                            .call(update => update.transition()
+                                .duration(1000) // Adjusted transition duration (1 second)
+                                .attrTween("d", function (d) {
+                                    const i = d3.interpolate(d.startAngle, d.endAngle);
+                                    return function (t) {
+                                        d.endAngle = i(t);
+                                        return arc(d);
+                                    };
+                                })
+                                .ease(d3.easeLinear) // Use linear easing for a steady transition
+                            )
+                    );
+                svg.selectAll("g")
+                    .data(stackedData)
+                    .selectAll()
+                    .data(d => d)
+                    .join("text")
+                    .attr("class", "bar-label")
+                    .attr("transform", d => `translate(${arc.centroid(d)})`)
+                    .text(d => d.data.UnitsSold);
+                svg.append("g")
+                    .attr("text-anchor", "middle")
+                    .selectAll()
+                    .data(states)
+                    .join("g")
+                    .attr("transform", d => `
+                        rotate(${((x(d) + x.bandwidth() / 2) * 180 / Math.PI - 90)})
+                        translate(${innerRadius},0)
+                    `)
+                    .call(g => g.append("line")
+                        .attr("x2", -5)
+                        .attr("stroke", "#000"))
+                    .call(g => g.append("text")
+                        .attr("transform", d => (x(d) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI
+                            ? "rotate(90)translate(0,16)"
+                            : "rotate(-90)translate(0,-9)")
+                        .text(d => d));
+                svg.append("g")
+                    .attr("text-anchor", "middle")
+                    .call(g => g.append("text")
+                        .attr("y", -outerRadius - 20)
+                        .text("Units Sold"));
+                const maxValue = d3.max(stackedData[stackedData.length - 1], d => d[1]);
+                const scaleValues = [Math.round(maxValue / 3), Math.round(maxValue * 2 / 3), maxValue];
+                const scaleGroup = svg.append("g").attr("class", "scale-group");
+
+                scaleValues.forEach((value, i) => {
+                    const formattedValue = value.toLocaleString(); // Format the value with commas
+                    scaleGroup.append("circle")
+                        .attr("class", "scale-circle")
+                        .attr("cx", 0)
+                        .attr("cy", 0)
+                        .attr("r", y(value));
+
+                    scaleGroup.append("text")
+                        .attr("class", "scale-label")
+                        .attr("x", 0)
+                        .attr("y", -y(value) - 10)
+                        .text(formattedValue)
+                        .attr("dy", 5);
+                });
+                scaleGroup.append("text")
+                    .attr("class", "scale-label")
+                    .attr("x", 0)
+                    .attr("y", -y(scaleValues[2]) - 20)
+                    .text(scaleValues[2])
+                    .attr("dy", -5);
+
+                // Create the product legend inside the inner circle only when "All products" is selected
+                if (!selectedCategory || selectedCategory === "All") {
+                    const productLegendInnerGroup = svg.append("g")
+                        .attr("class", "product-legend-inner")
+                        .attr("transform", `translate(-40, ${-innerRadius + 110})`); // Adjust position as needed
+
+                    // Define the products and their colors
+                    const products = ["Apparel", "Athletic Footwear", "Street Footwear"];
+                    const productColors = {
+                        "Apparel": "#ff7f0e", // orange
+                        "Street Footwear": "#d62728", // red
+                        "Athletic Footwear": "#2ca02c" // green
+                    };
+                    // Create legend items for each product
+                    const legendItems = productLegendInnerGroup.selectAll(".legend-item")
+                        .data(products)
+                        .enter()
+                        .append("g")
+                        .attr("class", "legend-item")
+                        .attr("transform", (d, i) => `translate(0, ${i * 20})`); // Adjust spacing as needed
+
+                    // Add colored rectangles for each product
+                    legendItems.append("rect")
+                        .attr("width", 10) // Adjust size as needed
+                        .attr("height", 10) // Adjust size as needed
+                        .attr("fill", d => productColors[d]); // Use productColors to get color for each product
+
+                    // Add text labels for each product
+                    legendItems.append("text")
+                        .attr("x", 15) // Adjust spacing as needed
+                        .attr("y", 10) // Adjust spacing as needed
+                        .text(d => d)
+                        .style("font-size", "12px"); // Adjust font size as needed
+                }
+            };
+            const container = document.getElementById('chart-container');
+            const select = document.getElementById('category-select');
+            select.addEventListener('change', function () {
+                const selectedCategory = this.value;
+                d3.json('data4.json').then(data => chart(data, container, selectedCategory));
+            });
+            d3.json('data4.json').then(data => chart(data, container));
+        });
+    </script>
+</body>
+</html>

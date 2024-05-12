@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>US Adidas Sales</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            cursor: default;
+            background-color: white; /* Light Gray */
+            
+        }
+
+        h1 {
+            position: absolute;
+            top: 0px; /* Adjust the top position as needed */
+            left: 0px; /* Adjust the left position as needed */
+            width: 100%; /* Set the width to cover the entire width of the page */
+            background-color: #5a5b5b; /* Set the background color */
+            color: rgb(255, 255, 255); /* Set the text color to white for better visibility */
+            padding: 30px; /* Add padding for spacing around the text */
+            margin: 0; /* Remove any default margin */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            text-align: center; /* Center the text horizontally */
+            font-family: 'Arial', sans-serif; /* Change the font family */
+            font-size: 50px; /* Adjust the font size as needed */
+        }
+
+        h1 img {
+            position: absolute; /* Position the image absolutely */
+            top: 50%; /* Adjust the top position to vertically center the image */
+            transform: translateY(-50%); /* Adjust translateY to vertically center the image */
+            left: 0px; /* Adjust the left position to position the image at the far left corner */
+        }
+
+        .subtitle {
+            font-size: 32px; /* Adjust font size */
+            color: #000000; /* Adjust text color */
+            position: absolute; /* Position the subtitle absolutely */
+            top: 110px; /* Adjust the top position as needed */
+            left: 680px; /* Adjust the left position as needed */
+        }
+
+        .container {
+            position: relative; /* Set the position to relative */
+            top: 110px; /* Adjust the top position as needed */
+            left: 0px; /* Adjust the left position as needed */
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .radar-chart {
+            width: 800px;
+            height: 600px;
+            margin-top: 50px;
+            margin-left: 200px;
+        }
+
+        .popup-chart-container {
+            width: 500px; /* Set a fixed width for the container */
+            height: 500px;
+            padding: 20px; /* Increase padding for more space */
+            margin-left: 150px;
+            margin-top: 100px;
+            margin-right: 150px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .popup-chart {
+            width: 300px;
+            height: 300px;
+        }
+
+        .slicer {
+            position: absolute;   
+        }
+
+             /* Adjust the margin-top for the second slicer to position it below the first one */
+        .slicer:nth-child(1) {
+            top: 100px;
+            left: 20px;
+        }
+
+        .slicer:nth-child(2) {
+            top: 160px;
+            left: 20px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .notes {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .notes ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 5px;
+        }
+
+        .notes ul li::before {
+            content: "• ";
+            color: red;
+            font-weight: bold;
+        }
+
+        #popup-chart-title {
+            color: #808080; /* Set text color to grey */
+        }
+        
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <h1>
+        <img src="Adidas.jpeg" alt="First Logo" style="height: 95px; margin-right: 0px;"> <!-- Adjust the image height and margin as needed -->
+        <img src="Teesside.jpeg" alt="Second Logo" style="height: 98px; margin-left: 1755px;"> <!-- Adjust the image height and margin as needed -->
+        US Adidas Sales
+    </h1>
+
+    <h2 class="subtitle">Total Operating Profit Per Product</h2>
+
+    <!-- Container for radar chart, slicer, and popup chart -->
+    <div class="container">
+        <!-- Year selection slicer -->
+        <div class="slicer">
+            <label for="year">Select Year:</label>
+            <select id="year" onchange="updateRadarChart()"></select>
+        </div>
+
+        <!-- Retailer selection slicer -->
+        <div class="slicer">
+            <label for="retailer">Select Retailer:</label>
+            <select id="retailer" onchange="updateRadarChart()"></select>
+        </div>
+
+        <!-- Radar chart -->
+        <div class="radar-chart"></div>
+
+        <!-- Popup chart container -->
+        <div class="popup-chart-container">
+            <h2 id="popup-chart-title"></h2>
+            <!-- Popup bar chart -->
+            <div class="popup-chart"></div>
+        </div>
+    </div>
+
+    <div class="tooltip"></div>
+
+    <!-- Notes -->
+    <div class="notes">
+        <p>Note:</p>
+        <ul>
+            <li>Hover over Radar chart data-point for details</li>
+            <li>Click Radar chart data-point label for Retailer bar chart</li>
+            <li>For a single retailer information, Select Retailer</li>
+            <li>For specific year information, Select Year</li>
+        </ul>
+    </div>
+
+    <script>
+        // Your product data
+        let rawData;
+
+        // Load data from JSON file
+        d3.json('totalprofitcsv.json').then(function (data) {
+            rawData = data;
+            console.log('Loaded data:', rawData);
+
+            // Extract unique years from the data
+            const years = Array.from(new Set(data.map(d => d.Year)));
+
+            // Populate the year selection slicer with "All" option
+            const yearSlicer = d3.select('#year');
+            yearSlicer.append('option').text('All Years').attr('value', 'all');
+            years.forEach(year => {
+                if (!yearSlicer.selectAll('option[value="' + year + '"]').size()) {
+                    yearSlicer.append('option').text(year).attr('value', year);
+                }
+            });
+
+            // Extract unique retailers from the data
+            const retailers = Array.from(new Set(data.map(d => d.Retailer)));
+
+            // Populate the retailer selection slicer with "All" option
+            const retailerSlicer = d3.select('#retailer');
+            retailerSlicer.append('option').text('All Retailers').attr('value', 'all');
+            retailers.forEach(retailer => {
+                if (!retailerSlicer.selectAll('option[value="' + retailer + '"]').size()) {
+                    retailerSlicer.append('option').text(retailer).attr('value', retailer);
+                }
+            });
+
+            // Initialize the radar chart with the default year and retailer (selecting "All")
+            updateRadarChart();
+        }).catch(function (error) {
+            console.error('Error loading data:', error);
+        });
+
+        // Radar chart function
+        function createRadarChart(data) {
+            const margin = { top: 80, right: 80, bottom: 80, left: 80 };
+            const width = 800 - margin.left - margin.right;
+            const height = 600 - margin.top - margin.bottom;
+            const radius = Math.min(width, height) / 2;
+
+            const svg = d3.select('.radar-chart')
+                .append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2 + margin.left) + ',' + (height / 2 + margin.top) + ')');
+
+            const maxValue = d3.max(data, d => d.TotalOperatingProfit);
+
+            const angleSlice = Math.PI * 2 / data.length;
+
+            // Scales
+            const rScale = d3.scaleLinear()
+                .range([0, radius])
+                .domain([0, maxValue]);
+
+            // Draw the radar chart with dotted lines
+            const radarPath = svg.selectAll('.radar-path')
+                .data([data])
+                .enter()
+                .append('path')
+                .attr('class', 'radar-path')
+                .attr('fill', 'rgba(180, 0, 32, 0.9)')
+                .attr('stroke', 'black')
+                .attr('stroke-dasharray', '5,5');
+
+            const totalPoints = data.length;
+            const drawRadarChart = (index) => {
+                if (index === totalPoints) {
+                    return; // Exit recursion when all points have been drawn
+                }
+
+                const pathData = data.slice(0, index + 1); // Data for drawing the path up to the current index
+                const line = d3.lineRadial()
+                    .angle((d, i) => i * angleSlice)
+                    .radius(d => rScale(d.TotalOperatingProfit))
+                    .curve(d3.curveLinearClosed);
+
+                radarPath.transition()
+                    .duration(500) // Duration for each transition
+                    .attr('d', line(pathData))
+                    .on('end', () => drawRadarChart(index + 1)); // Recursive call to draw the next point
+            };
+
+            drawRadarChart(0); // Start drawing the radar chart from the first data point
+
+            // Draw radial axes
+            const axes = svg.selectAll('.axis')
+                .data(data)
+                .enter()
+                .append('g')
+                .attr('class', 'axis');
+
+            axes.append('line')
+                .attr('x1', 0)
+                .attr('y1', 0)
+                .attr('x2', (d, i) => rScale(maxValue) * Math.cos(angleSlice * i - Math.PI / 2))
+                .attr('y2', (d, i) => rScale(maxValue) * Math.sin(angleSlice * i - Math.PI / 2))
+                .attr('stroke', 'lightgray')
+                .attr('stroke-width', 1);
+
+            // Draw lines to connect outer ends of radial axes and form a hexagon housing
+            axes.append('line')
+                .attr('x1', (d, i) => rScale(maxValue) * Math.cos(angleSlice * i - Math.PI / 2))
+                .attr('y1', (d, i) => rScale(maxValue) * Math.sin(angleSlice * i - Math.PI / 2))
+                .attr('x2', (d, i) => rScale(maxValue) * Math.cos(angleSlice * (i + 1) - Math.PI / 2))
+                .attr('y2', (d, i) => rScale(maxValue) * Math.sin(angleSlice * (i + 1) - Math.PI / 2))
+                .attr('stroke', 'black')
+                .attr('stroke-width', 2);
+
+            // Draw smaller hexagonal shapes as support areas
+            for (let j = 1; j < 4; j++) {
+                const supportLine = d3.lineRadial()
+                    .angle((d, i) => i * angleSlice)
+                    .radius(d => rScale(maxValue * (0.25 * j)))
+                    .curve(d3.curveLinearClosed);
+
+                svg.selectAll(`.support-path-${j}`)
+                    .data([data])
+                    .enter()
+                    .append('path')
+                    .attr('class', `support-path-${j}`)
+                    .attr('d', supportLine)
+                    .attr('fill', 'none')
+                    .attr('stroke', 'lightgray')
+                    .attr('stroke-width', 1);
+            }
+
+            // Draw labels
+            axes.append('text')
+                .attr('class', 'axis-label')
+                .attr('x', (d, i) => rScale(maxValue * 1.25) * Math.cos(angleSlice * i - Math.PI / 2))
+                .attr('y', (d, i) => rScale(maxValue * 1.25) * Math.sin(angleSlice * i - Math.PI / 2))
+                .text(d => d.Product)
+                .style('text-anchor', 'middle')
+                .style('fill', '#808080')
+                .style('font-weight', 'bold');
+
+            // Label data points with total profit above each point
+            svg.selectAll('.data-label')
+                .data(data)
+                .enter()
+                .append('text')
+                .attr('class', 'data-label')
+                .attr('x', (d, i) => rScale(d.TotalOperatingProfit) * Math.cos(angleSlice * i - Math.PI / 2))
+                .attr('y', (d, i) => rScale(d.TotalOperatingProfit) * Math.sin(angleSlice * i - Math.PI / 2) - 10)
+                .text(d => `$${d3.format(',')(Math.round(d.TotalOperatingProfit))}`)
+                .style('text-anchor', 'middle')
+                .style('font-size', '12px')
+                .style('font-weight', 'bold')
+                .style('cursor', 'pointer')
+                .on('click', showPopupChart);
+
+            // Add small circular points at the data points
+            svg.selectAll('.data-point')
+                .data(data)
+                .enter()
+                .append('circle')
+                .attr('class', 'data-point')
+                .attr('cx', (d, i) => rScale(d.TotalOperatingProfit) * Math.cos(angleSlice * i - Math.PI / 2))
+                .attr('cy', (d, i) => rScale(d.TotalOperatingProfit) * Math.sin(angleSlice * i - Math.PI / 2))
+                .attr('r', 4)
+                .attr('fill', 'black')
+                .style('cursor', 'pointer')
+                .on('mouseover', function () {
+                    d3.select(this).attr('r', 6);
+                    d3.select('.tooltip').transition().duration(200).style('opacity', 0.9);
+                })
+                .on('mousemove', function (event, d) {
+                    const tooltip = d3.select('.tooltip');
+                    tooltip.html(`Total Profit: $${d3.format(',')(Math.round(d.TotalOperatingProfit))}<br>Percentage: ${((d.TotalOperatingProfit / d3.sum(data, d => d.TotalOperatingProfit)) * 100).toFixed(2)}%`)
+                        .style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 28) + 'px');
+                })
+                .on('mouseout', function () {
+                    d3.select(this).attr('r', 4);
+                    d3.select('.tooltip').transition().duration(200).style('opacity', 0);
+                });
+        }
+
+        // Popup chart function
+        function showPopupChart(event, d) {
+            // Remove previous popup chart
+            d3.select('.popup-chart').selectAll('*').remove();
+
+            // Extract retailer data for the selected product and year, and calculate total profit for each retailer
+            const selectedYear = document.getElementById('year').value;
+            const selectedRetailer = document.getElementById('retailer').value;
+            let filteredRetailerData = rawData.filter(entry => entry.Product === d.Product);
+            if (selectedYear !== 'all') {
+                filteredRetailerData = filteredRetailerData.filter(entry => entry.Year == selectedYear);
+            }
+            if (selectedRetailer !== 'all') {
+                filteredRetailerData = filteredRetailerData.filter(entry => entry.Retailer === selectedRetailer);
+            }
+            const retailerProfit = d3.rollups(filteredRetailerData, v => d3.sum(v, d => d.TotalOperatingProfit), d => d.Retailer)
+                .sort((a, b) => b[1] - a[1]); // Sort by profit in descending order
+
+            // Set up scales for the popup bar chart
+            const xScale = d3.scaleBand()
+                .domain(retailerProfit.map(([retailer, profit]) => retailer))
+                .range([40, 360])
+                .padding(0.1);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(retailerProfit, ([retailer, profit]) => profit)])
+                .nice()
+                .range([250, 20]);
+
+            // Draw bars on the popup chart
+            const popupChart = d3.select('.popup-chart')
+                .append('svg')
+                .attr('width', 400)
+                .attr('height', 400);
+
+            // Add title with selected year and retailer
+            const title = selectedYear === 'all' ? 'All Years' : selectedYear;
+            const retailerTitle = selectedRetailer === 'all' ? 'All Retailers' : selectedRetailer;
+            d3.select('#popup-chart-title')
+                .text(`${d.Product} Retailer Profit (${title} - ${retailerTitle})`)
+                .style('font-size', '16px');
+
+            // Define a color scale
+            const colorScale = d3.scaleOrdinal(d3.schemeCategory10.map(color => d3.color(color).brighter(0.5)));
+
+            // Draw bars on the popup chart
+            popupChart.selectAll('.popup-bar')
+                .data(retailerProfit)
+                .enter()
+                .append('rect')
+                .attr('class', 'popup-bar')
+                .attr('x', ([retailer, profit]) => xScale(retailer))
+                .attr('y', ([retailer, profit]) => yScale(0))
+                .attr('width', xScale.bandwidth())
+                .attr('height', 0)
+                .style('fill', (d, i) => colorScale(i)) // Assign color based on index
+                .transition()
+                .delay((d, i) => i * 200) // Delay each bar's appearance
+                .duration(1000) // Transition duration
+                .attr('y', ([retailer, profit]) => yScale(profit))
+                .attr('height', ([retailer, profit]) => 250 - yScale(profit));
+
+            // Draw axes for the popup chart
+            const xAxis = d3.axisBottom(xScale);
+            const yAxis = d3.axisLeft(yScale).tickFormat(d3.format('~s'));
+
+            popupChart.append('g')
+                .attr('transform', 'translate(0,250)')
+                .call(xAxis)
+                .selectAll('text') // Rotate x-axis labels for better readability
+                .attr('transform', 'rotate(-45)')
+                .style('text-anchor', 'end')
+                .style('font-size', '12px')
+                .attr('dx', '-.8em')
+                .attr('dy', '.15em')
+                .style('fill', '#808080') // Change text color to dark gray
+                .style('font-weight', 'bold'); // Make text bold
+
+            popupChart.append('g')
+                .attr('transform', 'translate(40,0)')
+                .call(yAxis)
+                .selectAll('text') // Change y-axis text color and font weight
+                .style('fill', '#808080') // Change text color to dark gray
+                .style('font-weight', 'bold'); // Make text bold
+        }
+
+        // Function to update the radar chart based on the selected year and retailer
+        function updateRadarChart() {
+            const selectedYear = document.getElementById('year').value;
+            const selectedRetailer = document.getElementById('retailer').value;
+
+            // Filter data based on the selected year and retailer
+            let filteredData = rawData;
+            if (selectedYear !== 'all') {
+                filteredData = rawData.filter(entry => entry.Year == selectedYear);
+            }
+            if (selectedRetailer !== 'all') {
+                filteredData = filteredData.filter(entry => entry.Retailer === selectedRetailer);
+            }
+
+            // Calculate the sum of TotalOperatingProfit for each product
+            const productData = Array.from(d3.rollup(filteredData, v => d3.sum(v, d => d.TotalOperatingProfit), d => d.Product), ([Product, TotalOperatingProfit]) => ({ Product, TotalOperatingProfit }));
+
+            // Remove the previous charts
+            d3.select('.radar-chart').selectAll('*').remove();
+            d3.select('.popup-chart').selectAll('*').remove();
+
+            // Create the updated radar chart
+            createRadarChart(productData);
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
